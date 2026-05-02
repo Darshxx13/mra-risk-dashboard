@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MRA Risk Dashboard</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0d1117; color: #c9d1d9; min-height: 100vh; }
+    header { background: #161b22; border-bottom: 1px solid #30363d; padding: 18px 40px; display: flex; align-items: center; gap: 12px; }
+    header .badge { background: #1f6feb; color: #fff; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 20px; letter-spacing: 0.5px; text-transform: uppercase; }
+    header h1 { font-size: 18px; color: #e6edf3; font-weight: 600; }
+    .hero { max-width: 860px; margin: 60px auto 0; padding: 0 24px; text-align: center; }
+    .hero h2 { font-size: 38px; font-weight: 700; color: #e6edf3; line-height: 1.25; margin-bottom: 16px; }
+    .hero p { font-size: 17px; color: #8b949e; max-width: 600px; margin: 0 auto 36px; line-height: 1.6; }
+    .cta-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 64px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border-radius: 6px; font-size: 14px; font-weight: 600; text-decoration: none; transition: opacity 0.15s; }
+    .btn:hover { opacity: 0.85; }
+    .btn-primary { background: #1f6feb; color: #fff; }
+    .btn-secondary { background: #21262d; color: #c9d1d9; border: 1px solid #30363d; }
+    .grid { max-width: 940px; margin: 0 auto 80px; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 24px; }
+    .card .icon { font-size: 22px; margin-bottom: 12px; }
+    .card h3 { font-size: 15px; font-weight: 600; color: #e6edf3; margin-bottom: 8px; }
+    .card p { font-size: 13px; color: #8b949e; line-height: 1.55; }
+    .portfolio-section { max-width: 860px; margin: 0 auto 80px; padding: 0 24px; }
+    .portfolio-section h2 { font-size: 20px; font-weight: 600; color: #e6edf3; margin-bottom: 16px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th { text-align: left; padding: 10px 14px; color: #8b949e; border-bottom: 1px solid #30363d; font-weight: 500; }
+    td { padding: 10px 14px; border-bottom: 1px solid #21262d; color: #c9d1d9; }
+    tr:last-child td { border-bottom: none; }
+    .tag { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+    .tag-eq { background: #1c2d1e; color: #3fb950; }
+    .tag-rt { background: #1c2435; color: #58a6ff; }
+    .tag-fx { background: #2d1f35; color: #d2a8ff; }
+    .tag-cm { background: #2d2214; color: #e3b341; }
+    .tag-cr { background: #2d1b1b; color: #f85149; }
+    .run-section { max-width: 860px; margin: 0 auto 80px; padding: 0 24px; }
+    .run-section h2 { font-size: 20px; font-weight: 600; color: #e6edf3; margin-bottom: 16px; }
+    pre { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 20px 24px; font-size: 13px; line-height: 1.7; overflow-x: auto; color: #c9d1d9; }
+    code .c { color: #8b949e; }
+    code .cmd { color: #58a6ff; }
+    footer { border-top: 1px solid #30363d; padding: 24px 40px; text-align: center; font-size: 13px; color: #8b949e; }
+    footer a { color: #58a6ff; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="badge">MRA</span>
+    <h1>Market Risk Analytics Dashboard</h1>
+  </header>
+  <section class="hero">
+    <h2>Institutional-Grade Risk<br>Analytics, Open Source</h2>
+    <p>A Python dashboard that mirrors the core workflows of a Market Risk Analytics group: VaR, Expected Shortfall, stress testing, backtesting, and gen AI commentary.</p>
+    <div class="cta-group">
+      <a class="btn btn-primary" href="https://github.com/Darshxx13/mra-risk-dashboard">View on GitHub</a>
+      <a class="btn btn-secondary" href="#run-locally">Run Locally</a>
+    </div>
+  </section>
+  <div class="grid">
+    <div class="card"><div class="icon">📊</div><h3>Three VaR Methods</h3><p>Historical simulation, parametric (normal), and Monte Carlo — side-by-side with interpretation of the spread between methods.</p></div>
+    <div class="card"><div class="icon">⚠️</div><h3>Expected Shortfall</h3><p>CVaR at 97.5% — the FRTB regulatory replacement for VaR. Captures average loss severity beyond the threshold, not just the cutoff.</p></div>
+    <div class="card"><div class="icon">🔁</div><h3>Backtesting</h3><p>Rolling VaR vs realised P&L with Basel III traffic light: Green / Yellow / Red exception zones over 250 trading days.</p></div>
+    <div class="card"><div class="icon">🌪️</div><h3>Stress Testing</h3><p>Historical scenarios (GFC, COVID, 2022 rate shock) and hypothetical shocks (rates +200bps, equity crash −20%, liquidity crisis).</p></div>
+    <div class="card"><div class="icon">🏦</div><h3>Asset Attribution</h3><p>Per-asset VaR and weighted contribution across equities, rates, FX, commodities, and credit — mirrors MRA desk structure.</p></div>
+    <div class="card"><div class="icon">🤖</div><h3>Gen AI Commentary</h3><p>Daily risk summaries generated by Claude (Anthropic API), formatted for senior management review.</p></div>
+  </div>
+  <section class="portfolio-section">
+    <h2>Portfolio Structure</h2>
+    <table>
+      <thead><tr><th>Ticker</th><th>Asset</th><th>Desk</th></tr></thead>
+      <tbody>
+        <tr><td>SPY</td><td>S&amp;P 500 ETF</td><td><span class="tag tag-eq">Equities</span></td></tr>
+        <tr><td>TLT</td><td>20Y Treasury ETF</td><td><span class="tag tag-rt">Rates / Macro</span></td></tr>
+        <tr><td>UUP</td><td>USD Index ETF</td><td><span class="tag tag-fx">FX / Macro</span></td></tr>
+        <tr><td>GLD</td><td>Gold ETF</td><td><span class="tag tag-cm">Commodities</span></td></tr>
+        <tr><td>HYG</td><td>High Yield Bond ETF</td><td><span class="tag tag-cr">Credit / Micro</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+  <section class="run-section" id="run-locally">
+    <h2>Run Locally</h2>
+    <pre><code><span class="c"># Clone and install</span>
+<span class="cmd">git clone</span> https://github.com/Darshxx13/mra-risk-dashboard
+<span class="cmd">cd</span> mra-risk-dashboard
+<span class="cmd">pip install</span> -r requirements.txt
+
+<span class="c"># Launch the dashboard</span>
+<span class="cmd">streamlit run</span> app.py</code></pre>
+  </section>
+  <footer>
+    Built by <a href="https://darshinirajamani.com">Raja Darshini Rajamani</a> &nbsp;·&nbsp;
+    <a href="https://linkedin.com/in/darshini-rajamani">LinkedIn</a> &nbsp;·&nbsp;
+    <a href="https://github.com/Darshxx13/mra-risk-dashboard">GitHub</a>
+  </footer>
+</body>
+</html>
